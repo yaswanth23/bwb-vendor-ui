@@ -1,0 +1,96 @@
+.main_container {
+  max-height: 100vh;
+  height: 100vh;
+  background: url("../../public/assets/svg/login_bg.svg") no-repeat center
+    center fixed;
+  background-color: var(--bg-color);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header {
+  color: var(--white-color);
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+.section {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section_form {
+  padding: 2rem 4rem;
+  width: 35rem;
+  background-color: var(--white-color);
+  border-radius: 0.5rem;
+}
+.sec_input {
+  padding: 0.7rem 0;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+  border: none;
+  letter-spacing: 1px;
+  font-family: "Montserrat", sans-serif;
+}
+.sec_input::placeholder {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-family: "Montserrat", sans-serif;
+}
+.input_section {
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 0.12rem solid var(--black-color);
+}
+.eye_icon_section {
+  cursor: pointer;
+}
+.button_container {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_button {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  text-decoration: none;
+  cursor: pointer;
+  width: 10rem;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  border-radius: 1.5rem;
+  height: 2.5rem;
+}
+.contact_us_container {
+  margin-top: 2rem;
+}
+.contact_us_container p {
+  font-size: 0.8rem;
+}
+.contact_us_link {
+  text-decoration: none;
+  font-weight: 600;
+  color: #6aa4eb;
+}
+.error_message_container {
+  padding-top: 1rem;
+}
+.error_message {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--red-color);
+}
