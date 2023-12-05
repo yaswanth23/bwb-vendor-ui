@@ -104,8 +104,8 @@ const Login = () => {
               <div className={styles.contact_us_container}>
                 <p>
                   Don’t have an account?{" "}
-                  <Link className={styles.contact_us_link} href="/contact">
-                    Contact Us
+                  <Link className={styles.contact_us_link} href="/signup">
+                    Sign up
                   </Link>
                 </p>
               </div>
