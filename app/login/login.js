@@ -39,6 +39,7 @@ const Login = () => {
     }
 
     if (userIdentifier && password) {
+      setErrorMessage("");
       const res = await signIn("credentials", {
         userIdentifier,
         password,
