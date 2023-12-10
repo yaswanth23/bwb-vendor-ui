@@ -22,3 +22,16 @@ export async function getEvents(userId, status) {
   const data = await response.json();
   return data;
 }
+
+export async function getVendorEventDetails(userId, eventId) {
+  const response = await fetch(
+    apiUrl + "/event/details/" + userId + "/" + eventId,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+
+  const data = await response.json();
+  return data;
+}
