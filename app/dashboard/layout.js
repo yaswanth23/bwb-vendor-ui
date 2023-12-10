@@ -8,11 +8,7 @@ const Layout = async ({ children }) => {
     redirect("/login");
   }
 
-  return (
-    <>
-      <DashboardLayout>{children}</DashboardLayout>
-    </>
-  );
+  return <DashboardLayout>{children}</DashboardLayout>;
 };
 
 export default Layout;
