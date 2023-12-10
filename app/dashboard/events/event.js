@@ -7,13 +7,19 @@ import { useSelector } from "react-redux";
 import { selectUserData } from "@/app/store/user/user.selector";
 import { getEvents } from "@/app/utils/api/event";
 import EndCountdown from "../endCountDown/endCountDown";
+import View from "./view/view";
 
 const Event = () => {
   const userData = useSelector(selectUserData);
   const [eventData, setEventData] = useState([]);
   const [status, setStatus] = useState("LIVE");
+  const [isView, setIsView] = useState(false);
+  const [viewEventData, setViewEventData] = useState({});
 
   const handleStatusChange = async (status) => {
+    if (isView) {
+      setIsView(false);
+    }
     setStatus(status);
     const data = await getEvents(userData.userId, status);
     if (data?.data) {
@@ -30,7 +36,12 @@ const Event = () => {
     };
 
     fetchData();
-  }, []);
+  }, [status]);
+
+  const handleEventView = (event) => {
+    setViewEventData(event);
+    setIsView(true);
+  };
 
   return (
     <div className={styles.container}>
@@ -61,31 +72,44 @@ const Event = () => {
         </div>
       </div>
       <div>
-        {eventData.length > 0 ? (
-          <div className={styles.event_card_section}>
-            {eventData.map((event) => (
-              <div key={event.eventid} className={styles.event_card}>
-                <h1 className={styles.event_heading}>{event.eventname}</h1>
-                <div className={styles.event_rfq_section}>
-                  <h1>RFQ</h1>
-                  <p>
-                    {JSON.parse(event.eventAttributesStore[0].value).length}
-                    {JSON.parse(event.eventAttributesStore[0].value).length > 1
-                      ? " Products"
-                      : " Product"}
-                  </p>
-                </div>
-                <div className={styles.live_counter_section}>
-                  <EndCountdown
-                    eventStartTime={event.eventstarttime}
-                    eventDuration={event.eventduration}
-                  />
-                </div>
+        {!isView ? (
+          <>
+            {eventData.length > 0 ? (
+              <div className={styles.event_card_section}>
+                {eventData.map((event) => (
+                  <div
+                    key={event.eventid}
+                    className={styles.event_card}
+                    onClick={() => handleEventView(event)}
+                  >
+                    <h1 className={styles.event_heading}>{event.eventname}</h1>
+                    <div className={styles.event_rfq_section}>
+                      <h1>RFQ</h1>
+                      <p>
+                        {JSON.parse(event.eventAttributesStore[0].value).length}
+                        {JSON.parse(event.eventAttributesStore[0].value)
+                          .length > 1
+                          ? " Products"
+                          : " Product"}
+                      </p>
+                    </div>
+                    <div className={styles.live_counter_section}>
+                      <EndCountdown
+                        eventStartTime={event.eventstarttime}
+                        eventDuration={event.eventduration}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            ) : (
+              <div className={styles.no_event}>No Events!</div>
+            )}
+          </>
         ) : (
-          <div className={styles.no_event}>No Events!</div>
+          <>
+            <View data={viewEventData} />
+          </>
         )}
       </div>
     </div>
