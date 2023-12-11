@@ -47,6 +47,9 @@
   display: flex;
   gap: 1rem;
 }
+.table_main td:nth-child(8) {
+  text-transform: lowercase;
+}
 .edit_icon {
   cursor: pointer;
   font-size: 1.1rem;

@@ -104,6 +104,7 @@ const View = ({ data }) => {
                 <th>Price per Qty</th>
                 <th>Counter Price</th>
                 <th>Action</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -163,6 +164,7 @@ const View = ({ data }) => {
                         }}
                       />
                     </td>
+                    <td>{item.productComparisions[0]?.vendorstatus}</td>
                   </tr>
                 ))}
             </tbody>
