@@ -7,6 +7,7 @@ import { selectUserData } from "@/app/store/user/user.selector";
 import {
   getVendorEventDetails,
   vendorPriceSubmit,
+  changeStatusCounterPrice,
 } from "@/app/utils/api/event";
 import Modal from "react-modal";
 import { BiEditAlt } from "react-icons/bi";
@@ -23,7 +24,7 @@ const View = ({ data }) => {
       const updateProductData = { ...prev, ...next };
       return updateProductData;
     },
-    { productId: "", vendorPrice: null, counterPrrice: null }
+    { productId: "", vendorPrice: null, counterPrice: null, status: "" }
   );
 
   useEffect(() => {
@@ -73,6 +74,26 @@ const View = ({ data }) => {
         setEventDetails(response.data.eventDetails);
       }
       closeModalOne();
+    }
+  };
+
+  const handleCounterPriceStatusChange = async (status) => {
+    if (productPriceData.counterPrice) {
+      const request = {
+        vendorUserId: userData.userId,
+        productId: productPriceData.productId,
+        status: status,
+      };
+
+      await changeStatusCounterPrice(request);
+      const response = await getVendorEventDetails(
+        userData.userId,
+        data.eventid
+      );
+      if (response?.data?.statusCode === 200) {
+        setEventDetails(response.data.eventDetails);
+      }
+      closeModalTwo();
     }
   };
 
@@ -249,7 +270,25 @@ const View = ({ data }) => {
         <div className={styles.modal_two_container}>
           {productPriceData.counterPrice ? (
             <>
-              <h1>Do you want to accept the counter offer price?</h1>
+              <h1>Do you want to accept the counter price?</h1>
+              <div className={styles.prd_btn_section}>
+                <button
+                  className={styles.prd_cancel_button}
+                  onClick={() => {
+                    handleCounterPriceStatusChange("REJECTED");
+                  }}
+                >
+                  Reject
+                </button>
+                <button
+                  className={styles.prd_add_button}
+                  onClick={() => {
+                    handleCounterPriceStatusChange("ACCEPTED");
+                  }}
+                >
+                  Accept
+                </button>
+              </div>
             </>
           ) : (
             <>
