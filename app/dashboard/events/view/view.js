@@ -18,7 +18,7 @@ const View = ({ data }) => {
   const [eventDetails, setEventDetails] = useState(null);
   const [modalOneIsOpen, setModalOneIsOpen] = useState(false);
   const [modalTwoIsOpen, setModalTwoIsOpen] = useState(false);
-  console.log("---> ", eventDetails);
+
   const [productPriceData, updateProductPriceData] = useReducer(
     (prev, next) => {
       const updateProductData = { ...prev, ...next };
