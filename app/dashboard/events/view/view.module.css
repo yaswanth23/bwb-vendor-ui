@@ -114,3 +114,7 @@
   font-weight: 600;
   cursor: pointer;
 }
+.modal_display_text {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}

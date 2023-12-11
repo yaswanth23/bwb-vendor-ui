@@ -18,13 +18,13 @@ const View = ({ data }) => {
   const [eventDetails, setEventDetails] = useState(null);
   const [modalOneIsOpen, setModalOneIsOpen] = useState(false);
   const [modalTwoIsOpen, setModalTwoIsOpen] = useState(false);
-
+  console.log("---> ", eventDetails);
   const [productPriceData, updateProductPriceData] = useReducer(
     (prev, next) => {
       const updateProductData = { ...prev, ...next };
       return updateProductData;
     },
-    { productId: "", vendorPrice: null, counterPrice: null, status: "" }
+    { productId: "", vendorPrice: null, counterPrice: null, vendorStatus: "" }
   );
 
   useEffect(() => {
@@ -181,6 +181,8 @@ const View = ({ data }) => {
                               item.productComparisions.length > 0
                                 ? item.productComparisions[0]?.counterprice
                                 : null,
+                            vendorStatus:
+                              item.productComparisions[0]?.vendorstatus,
                           });
                         }}
                       />
@@ -271,24 +273,31 @@ const View = ({ data }) => {
           {productPriceData.counterPrice ? (
             <>
               <h1>Do you want to accept the counter price?</h1>
-              <div className={styles.prd_btn_section}>
-                <button
-                  className={styles.prd_cancel_button}
-                  onClick={() => {
-                    handleCounterPriceStatusChange("REJECTED");
-                  }}
-                >
-                  Reject
-                </button>
-                <button
-                  className={styles.prd_add_button}
-                  onClick={() => {
-                    handleCounterPriceStatusChange("ACCEPTED");
-                  }}
-                >
-                  Accept
-                </button>
-              </div>
+              {productPriceData.vendorStatus == "OPEN" ? (
+                <div className={styles.prd_btn_section}>
+                  <button
+                    className={styles.prd_cancel_button}
+                    onClick={() => {
+                      handleCounterPriceStatusChange("REJECTED");
+                    }}
+                  >
+                    Reject
+                  </button>
+                  <button
+                    className={styles.prd_add_button}
+                    onClick={() => {
+                      handleCounterPriceStatusChange("ACCEPTED");
+                    }}
+                  >
+                    Accept
+                  </button>
+                </div>
+              ) : (
+                <p className={styles.modal_display_text}>
+                  you have already {productPriceData.vendorStatus.toLowerCase()}{" "}
+                  this item!
+                </p>
+              )}
             </>
           ) : (
             <>
