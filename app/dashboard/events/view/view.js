@@ -83,6 +83,17 @@ const View = ({ data }) => {
       <div className={styles.container}>
         <div className={styles.first_section}>
           <h1>{data.eventname}</h1>
+          {eventDetails && (
+            <p>
+              {eventDetails.eventAttributesStore.map((item) => {
+                if (item.key === "AWARD_TYPE") {
+                  return item.value == 1
+                    ? "Note: Kindly provide the prices for all the items in this event."
+                    : "Note: Kindly provide the price for the items which are available.";
+                }
+              })}
+            </p>
+          )}
         </div>
         <div className={styles.second_section}>
           <table className={styles.table_main}>

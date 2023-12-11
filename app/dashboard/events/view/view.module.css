@@ -5,6 +5,10 @@
   text-transform: capitalize;
   font-size: 1.1rem;
 }
+.first_section p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
 .second_section {
   margin-top: 2rem;
 }
