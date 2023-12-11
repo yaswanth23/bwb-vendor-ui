@@ -17,16 +17,14 @@ const View = ({ data }) => {
   const [eventDetails, setEventDetails] = useState(null);
   const [modalOneIsOpen, setModalOneIsOpen] = useState(false);
   const [modalTwoIsOpen, setModalTwoIsOpen] = useState(false);
-  console.log("---> ed", eventDetails);
 
   const [productPriceData, updateProductPriceData] = useReducer(
     (prev, next) => {
       const updateProductData = { ...prev, ...next };
       return updateProductData;
     },
-    { productId: "", vendorPrice: null }
+    { productId: "", vendorPrice: null, counterPrrice: null }
   );
-  console.log(productPriceData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -155,7 +153,11 @@ const View = ({ data }) => {
                             productId: item.productid,
                             vendorPrice:
                               item.productComparisions.length > 0
-                                ? item.productComparisions[0].vendorprice
+                                ? item.productComparisions[0]?.vendorprice
+                                : null,
+                            counterPrice:
+                              item.productComparisions.length > 0
+                                ? item.productComparisions[0]?.counterprice
                                 : null,
                           });
                         }}
@@ -242,7 +244,27 @@ const View = ({ data }) => {
         }}
         ariaHideApp={false}
       >
-        <div>hi</div>
+        <div className={styles.modal_two_container}>
+          {productPriceData.counterPrice ? (
+            <>
+              <h1>Do you want to accept the counter offer price?</h1>
+            </>
+          ) : (
+            <>
+              <h1>You can accept once you counter offer price</h1>
+              <div className={styles.prd_btn_section}>
+                <button
+                  className={styles.prd_cancel_button}
+                  onClick={() => {
+                    closeModalTwo();
+                  }}
+                >
+                  Close
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </Modal>
     </>
   );
