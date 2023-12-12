@@ -187,7 +187,7 @@ const View = ({ data }) => {
                         }}
                       />
                     </td>
-                    <td>{item.productComparisions[0]?.vendorstatus}</td>
+                    <td>{item.productComparisions[0]?.status}</td>
                   </tr>
                 ))}
             </tbody>
