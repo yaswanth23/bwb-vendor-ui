@@ -301,7 +301,9 @@ const View = ({ data }) => {
             </>
           ) : (
             <>
-              <h1>You can accept once you counter offer price</h1>
+              <h1>
+                You can accept/reject once you receive counter offer price
+              </h1>
               <div className={styles.prd_btn_section}>
                 <button
                   className={styles.prd_cancel_button}
