@@ -193,6 +193,20 @@ const View = ({ data }) => {
             </tbody>
           </table>
         </div>
+        <div className={styles.purchase_order_section}>
+          {eventDetails?.purchaseOrderUrl && (
+            <>
+              <h1>Purchase Order:</h1>
+              <a
+                href={eventDetails.purchaseOrderUrl}
+                download
+                className={styles.download_po_btn}
+              >
+                Download PO
+              </a>
+            </>
+          )}
+        </div>
       </div>
       <Modal
         isOpen={modalOneIsOpen}

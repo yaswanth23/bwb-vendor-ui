@@ -118,3 +118,22 @@
   font-size: 1rem;
   margin-top: 0.5rem;
 }
+.purchase_order_section {
+  margin-top: 2rem;
+}
+.purchase_order_section h1 {
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+.download_po_btn {
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
