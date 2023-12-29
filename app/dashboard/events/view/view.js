@@ -121,6 +121,7 @@ const View = ({ data }) => {
                 <th>Product</th>
                 <th>Product Variant</th>
                 <th>Quantity</th>
+                <th>Qty Type</th>
                 <th>Delivery Location</th>
                 <th>Price per Qty</th>
                 <th>Counter Price</th>
@@ -140,6 +141,7 @@ const View = ({ data }) => {
                     <td>{item.product}</td>
                     <td>{item.productvariant}</td>
                     <td>{item.quantity}</td>
+                    <td>{item.quantitytype}</td>
                     <td>{item.deliverylocation}</td>
                     <td>
                       {item.productComparisions.length > 0 &&
